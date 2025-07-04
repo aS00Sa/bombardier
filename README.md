@@ -60,65 +60,90 @@ Statistics        Avg      Stdev        Max
 ```
 go get -u github.com/codesenberg/bombardier
 go get -u github.com/olekukonko/tablewriter
+
+vi bombardier-test-index.go
 ```
-
-
 ``` bash
-vi main.go
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"log"
-	"os"
-	"time"
+	"os" // Импорт пакета os
+	"os/exec"
+	"strings"
 
-	"github.com/codesenberg/bombardier"
-	"github.com/olekukonko/tablewriter"
+	"github.com/olekukonko/tablewriter" // Импорт пакета tablewriter
 )
 
-// Структура для хранения результатов запроса
-type RequestResult struct {
-	StatusCode int
-	Duration   time.Duration
-}
-
 func main() {
-	// URL, на который будем отправлять запросы
-	url := "http://example.com"
-
-	// Создаем клиент Bombardier
-	client := bombardier.NewClient()
+	// Команда и аргументы для выполнения
+	cmd := exec.Command("bombardier", "-c", "1000", "-t", "60s", "-d", "60s", "-l", "http://192.168.22.92/index.html")
 
 	// Массив для хранения результатов
-	results := make([]RequestResult, 10)
+	var results [][]string
 
-	// Выполняем 10 запросов
-	for i := 0; i < 10; i++ {
-		start := time.Now()
-		resp, err := client.Get(url)
+	// Выполняем команду 10 раз
+	for i := 1; i <= 10; i++ {
+		var out bytes.Buffer
+		var stderr bytes.Buffer
+		cmd.Stdout = &out
+		cmd.Stderr = &stderr
+		err := cmd.Run()
 		if err != nil {
-			log.Fatalf("Ошибка выполнения запроса: %v", err)
+			log.Fatalf("Ошибка выполнения команды %d: %v, stderr: %s", i, err, stderr.String())
 		}
-		duration := time.Since(start)
-		results[i] = RequestResult{
-			StatusCode: resp.StatusCode,
-			Duration:   duration,
+
+		// Парсим вывод команды
+		output := out.String()
+
+		var requests, success, failed, avgLatency, maxLatency string
+		for _, line := range strings.Split(output, "\n") {
+			if strings.Contains(line, "Requests") {
+				parts := strings.Fields(line)
+				for i, part := range parts {
+					if part == "Requests:" {
+						requests = parts[i+1]
+					} else if part == "Success:" {
+						success = parts[i+1]
+					} else if part == "Failed:" {
+						failed = parts[i+1]
+					} else if part == "Avg:" {
+						avgLatency = parts[i+1]
+					} else if part == "Max:" {
+						maxLatency = parts[i+1]
+					}
+				}
+			}
 		}
+
+		// Добавляем результаты в массив
+		results = append(results, []string{
+			fmt.Sprintf("%d", i),
+			requests,
+			success,
+			failed,
+			avgLatency,
+			maxLatency,
+		})
 	}
 
-	// Выводим результаты в виде таблицы
+	// Выводим результаты в таблицу
 	table := tablewriter.NewWriter(os.Stdout)
-	table.SetHeader([]string{"Номер запроса", "Статус код", "Длительность (ms)"})
+	table.SetHeader([]string{"Номер запроса", "Requests", "Success", "Failed", "Avg Latency", "Max Latency"}) // Исправленный синтаксис
 
-	for i, res := range results {
-		table.Append([]string{
-			fmt.Sprintf("%d", i+1),
-			fmt.Sprintf("%d", res.StatusCode),
-			fmt.Sprintf("%.2f", res.Duration.Seconds()*1000),
-		})
+	for _, row := range results {
+		table.Append(row)
 	}
 
 	table.Render()
 }
 ```
+
+```
+go run bombardier-test-index.go
+```
+
+
+
