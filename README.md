@@ -55,8 +55,13 @@ Statistics        Avg      Stdev        Max
   Throughput:     3.06MB/s
 ```
 
+
+
+```
 go get -u github.com/codesenberg/bombardier
 go get -u github.com/olekukonko/tablewriter
+```
+
 
 ``` bash
 vi main.go
