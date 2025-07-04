@@ -10,6 +10,7 @@ require (
 	github.com/codesenberg/concurrent v0.0.0-20180531114123-64560cfcf964
 	github.com/goware/urlx v0.3.2
 	github.com/juju/ratelimit v1.0.2
+	github.com/olekukonko/tablewriter v1.0.8
 	github.com/satori/go.uuid v1.2.0
 	github.com/valyala/fasthttp v1.63.0
 )
@@ -26,7 +27,6 @@ require (
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/olekukonko/errors v1.1.0 // indirect
 	github.com/olekukonko/ll v0.0.9 // indirect
-	github.com/olekukonko/tablewriter v1.0.8 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	golang.org/x/net v0.41.0 // indirect
