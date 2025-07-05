@@ -45,7 +45,7 @@ vi bombardier-test-proxy.go
 vi bombardier-test-redis.go
 
 # ready steady go!
-go run bombardier-test-index.go && go run bombardier-test-proxy.go && go run bombardier-test-redis.go
+go run bombardier-test-index.go && go run bombardier-test-proxy.go && go run bombardier-test-redis.go & 
 
 import index.html.txt proxy.php.txt redis.txt files to Calc
 ```
