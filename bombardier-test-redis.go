@@ -82,7 +82,7 @@ func main() {
 		// Извлечение Latency 95%
 		latency95Match := regexLatency95.FindStringSubmatch(output)
 		if len(latency95Match) > 1 {
-			latency95 = latency95Match[1]
+			latency95 = strings.ReplaceAll(latency95Match[1], ".", ",")
                         unitLatency95 = latency95Match[2]
 //			if len(latency95Match) > 2 && latency95Match[2] != "" {
 //				latency95 += latency95Match[2]
@@ -98,7 +98,7 @@ func main() {
 		// Извлечение Latency 99%
 		latency99Match := regexLatency99.FindStringSubmatch(output)
 		if len(latency99Match) > 1 {
-			latency99 = latency99Match[1]
+			latency99 = strings.ReplaceAll(latency99Match[1], ".", ",")
                         unitLatency99 = latency99Match[2]
 //			if len(latency99Match) > 2 && latency99Match[2] != "" {
 //				latency99 += latency99Match[2]
@@ -129,7 +129,7 @@ func main() {
 		// Извлечение Throughput
 		throughputMatch := regexThroughput.FindStringSubmatch(output)
 		if len(throughputMatch) > 1 {
-			Throughput = throughputMatch[1]
+			Throughput = strings.ReplaceAll(throughputMatch[1], ".", ",")
                         unitThroughput = throughputMatch[2]
 //			if len(throughputMatch) > 2 && throughputMatch[2] != "" {
 //				Throughput += throughputMatch[2]
