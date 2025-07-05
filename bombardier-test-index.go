@@ -42,6 +42,7 @@ func main() {
 		// Создаем команду с параметрами
 		cmd := exec.Command(
 			"bombardier",
+                        "--http1",
 			"-c", params.Connections,
 			"-t", params.Timeout,
 			"-d", params.Duration,
