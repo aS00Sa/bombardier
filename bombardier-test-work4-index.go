@@ -6,15 +6,15 @@ import (
 //	"os"
 	"os/exec"
 	"regexp"
-//	"strings"
+	"strings"
 
 //	"github.com/olekukonko/tablewriter"
 )
 func main() {
-	cmd := exec.Command("bombardier", "-c", "1000", "-t", "60s", "-d", "60s", "-l", "-p", "r", "http://192.168.22.92/index.html")
+//	cmd := exec.Command("bombardier", "-c", "1000", "-t", "60s", "-d", "1s", "-l", "-p", "r", "http://192.168.22.92/index.html")
 	var results [][]string
-	fmt.Println("Номер запроса|Requests/s|Latency95%,ms|Latency99%,ms|HTTP 2xx|Others|Throughput,MB/s")
-	for i := 1; i <= 1; i++ {
+	for i := 1; i <= 10; i++ {
+		cmd := exec.Command("bombardier", "-c", "1000", "-t", "60s", "-d", "1s", "-l", "-p", "r", "http://192.168.22.92/index.html")
 		var out bytes.Buffer
 		var stderr bytes.Buffer
 		cmd.Stdout = &out
@@ -84,11 +84,11 @@ func main() {
 			otherHTTP,
 			Throughput,
 		})
-        fmt.Println("i|requests|latency95|latency99|HTTP2xx|otherHTTP|Throughput")
-
+//        fmt.Println("i|requests|latency95|latency99|HTTP2xx|otherHTTP|Throughput")
 	}
 	// Выводим результаты в табличном формате с разделителями "|"
-//	for _, row := range results {
-//		fmt.Println(strings.Join(row, "|"))
-//	}
+	fmt.Println("Номер запроса|Requests/s|Latency95%,ms|Latency99%,ms|HTTP 2xx|Others|Throughput,MB/s")
+	for _, row := range results {
+	        fmt.Println(strings.Join(row, "|"))
+	}
 }
