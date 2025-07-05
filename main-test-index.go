@@ -47,9 +47,10 @@ func main() {
 			latency95 = latency95Match[1]
 			if len(latency95Match) > 2 && latency95Match[2] != "" {
 				latency95 += latency95Match[2]
-			} else {
-				latency95 += "ms"
-			}
+			} 
+//                        else if len(latency95Match) = 1 && latency95Match[2] != "" {
+//				latency95 += "s"
+//			}
 		} else {
 			latency95 = "0"
 		}
@@ -60,9 +61,10 @@ func main() {
 			latency99 = latency99Match[1]
 			if len(latency99Match) > 2 && latency99Match[2] != "" {
 				latency99 += latency99Match[2]
-			} else {
-				latency99 += "ms"
-			}
+			} 
+//                        else if len(latency99Match) = 1 && latency99Match[2] != "" {
+//				latency99 += "s"
+//			}
 		} else {
 			latency99 = "0"
 		}
@@ -89,9 +91,10 @@ func main() {
 			Throughput = throughputMatch[1]
 			if len(throughputMatch) > 2 && throughputMatch[2] != "" {
 				Throughput += throughputMatch[2]
-			} else {
-				Throughput += "MB/s"
-			}
+			} 
+//                        else {
+//				Throughput += "MB/s"
+//			}
 		} else {
 			Throughput = "0"
 		}
@@ -107,11 +110,11 @@ func main() {
 			Throughput,
 		})
 		// Выводим промежуточные сырые данные каждого цикла замеров
-		fmt.Printf("index.html %d, requests: %s, latency95: %s, latency99: %s, HTTP2xx: %s, otherHTTP: %s, Throughput: %s\n", i, requests, latency95, latency99, HTTP2xx, otherHTTP, Throughput)
+//		fmt.Printf("index.html %d, requests: %s, latency95: %s, latency99: %s, HTTP2xx: %s, otherHTTP: %s, Throughput: %s\n", i, requests, latency95, latency99, HTTP2xx, otherHTTP, Throughput)
 	}
 
 	// Выводим результаты в табличном формате с разделителями "|"
-	fmt.Println("Номер запроса|Requests/s|Latency95%|Latency99%|HTTP 2xx|Others|Throughput")
+	fmt.Println("index.html|Requests/s|Latency95%|Latency99%|HTTP2xx|OthersHTTP|Throughput")
 	for _, row := range results {
 		fmt.Println(strings.Join(row, "|"))
 	}
