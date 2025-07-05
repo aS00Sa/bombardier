@@ -4,15 +4,17 @@ import (
 	"bytes"
 	"fmt"
 	"log"
+        "os"
 	"os/exec"
 	"regexp"
 	"strings"
+        "time"
 )
-
 
 // Определяем структуру для хранения параметров
 type BombardierParams struct {
 	URL        string
+        HOST       string
 	Connections string
 	Timeout    string
 	Duration   string
@@ -21,13 +23,21 @@ type BombardierParams struct {
 func main() {
 	// Инициализируем параметры
 	params := BombardierParams{
-		URL:        "http://192.168.22.92/redis.php",
+		URL:        "redis.php",
+                HOST:         "192.168.22.92",
 		Connections: "1000",
 		Timeout:    "30s",
-		Duration:   "60s",
+		Duration:   "600s",
 	}
 
 	var results [][]string
+        var CURL string 
+        CURL = "http://"
+        CURL += params.HOST
+        CURL += "/"
+        CURL += params.URL
+//      CURI := strings.Join(row) + "http://" + "HOST" + "URL"
+
 	for i := 1; i <= 10; i++ {
 		// Создаем команду с параметрами
 		cmd := exec.Command(
@@ -37,7 +47,7 @@ func main() {
 			"-d", params.Duration,
 			"-l",
 			"-p", "r",
-			params.URL,
+			CURL,
 		)
 
 		var out bytes.Buffer
@@ -156,5 +166,35 @@ func main() {
 	for _, row := range results {
 		fmt.Println(strings.Join(row, "|"))
 	}
-}
 
+	// Формируем имя файла с датой и временем
+	timestamp := time.Now().Format("2006-01-02_15-04-05")
+	filename := fmt.Sprintf("%s_%s.txt", params.URL, timestamp)
+
+	// Создаем файл и записываем результаты
+	file, err := os.Create(filename)
+	if err != nil {
+		log.Fatalf("Ошибка создания файла: %v", err)
+	}
+	defer file.Close()
+
+	// Записываем заголовки в файл
+	header := "Count|URL|Connections|Duration|Timeout|Requests/s|Latency95%|unit|Latency99%|unit|HTTP2xx|OthersHTTP|Throughput|unit\n"
+	_, err = file.WriteString(header)
+	if err != nil {
+		log.Fatalf("Ошибка записи в файл: %v", err)
+	}
+
+	// Записываем результаты в файл
+	for _, row := range results {
+		line := strings.Join(row, "|") + "\n"
+		_, err = file.WriteString(line)
+		if err != nil {
+			log.Fatalf("Ошибка записи в файл: %v", err)
+		}
+	}
+
+	// Выводим результаты в консоль
+	fmt.Println("Результаты записаны в файл:", filename)
+
+}

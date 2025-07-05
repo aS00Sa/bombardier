@@ -25,3 +25,7 @@ _testmain.go
 cover.*
 bombardier
 bombardier-*
+*.txt
+*.log
+*.gz
+*.zip
