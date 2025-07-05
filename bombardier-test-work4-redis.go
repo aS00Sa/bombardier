@@ -13,9 +13,9 @@ import (
 )
 
 func main() {
-	cmd := exec.Command("bombardier", "-c", "1000", "-t", "60s", "-d", "60s", "-l", "-p", "r", "http://192.168.22.92/redis.php")
+	cmd := exec.Command("bombardier", "-c", "1000", "-t", "60s", "-d", "1s", "-l", "-p", "r", "http://192.168.22.92/redis.php")
 	var results [][]string
-	for i := 1; i <= 10; i++ {
+	for i := 1; i <= 1; i++ {
 		var out bytes.Buffer
 		var stderr bytes.Buffer
 		cmd.Stdout = &out
@@ -30,11 +30,11 @@ func main() {
 
 		// Регулярные выражения для парсинга
 		regexReqsPerSec := regexp.MustCompile(`Reqs/sec\s+([\d\.]+)`)
-		regexLatency95 := regexp.MustCompile(`95%\s+([\d\.]+)ms`)
-		regexLatency99 := regexp.MustCompile(`99%\s+([\d\.]+)ms`)
+		regexLatency95 := regexp.MustCompile(`95%\s+([\d\.]+)`)
+		regexLatency99 := regexp.MustCompile(`99%\s+([\d\.]+)`)
 		regexHTTP2xx := regexp.MustCompile(`2xx -\s+([\d\.]+)`)
 		regexOthers := regexp.MustCompile(`others -\s+([\d\.]+)`)
-		regexThroughput := regexp.MustCompile(`Throughput:\s+([\d\.]+)MB/s`)
+		regexThroughput := regexp.MustCompile(`Throughput:\s+([\d\.]+)`)
 
 		// Извлечение Reqs/sec
 		reqsPerSecMatch := regexReqsPerSec.FindStringSubmatch(output)
@@ -47,17 +47,17 @@ func main() {
 		// Извлечение Latency 95%
 		latency95Match := regexLatency95.FindStringSubmatch(output)
 		if len(latency95Match) > 1 {
-			latency95 = latency95Match[1] + "ms"
+			latency95 = latency95Match[1]
 		} else {
-			latency95 = "0ms"
+			latency95 = "0"
 		}
 
 		// Извлечение Latency 99%
 		latency99Match := regexLatency99.FindStringSubmatch(output)
 		if len(latency99Match) > 1 {
-			latency99 = latency99Match[1] + "ms"
+			latency99 = latency99Match[1]
 		} else {
-			latency99 = "0ms"
+			latency99 = "0"
 		}
 
 		// Извлечение HTTP 2xx
@@ -79,19 +79,19 @@ func main() {
 		// Извлечение Throughput
 		throughputMatch := regexThroughput.FindStringSubmatch(output)
 		if len(throughputMatch) > 1 {
-			Throughput = throughputMatch[1] + "MB/s"
+			Throughput = throughputMatch[1]
 		} else {
-			Throughput = "0MB/s"
+			Throughput = "0"
 		}
 
 		// Вывод статистики
 		fmt.Println("\nStatistics")
-		fmt.Printf("  Reqs/sec %s\n", requests)
-		fmt.Printf("    latency 95% %s\n", latency95)
-		fmt.Printf("    latency 99% %s\n", latency99)
-		fmt.Printf("    HTTP 2xx %s\n", HTTP2xx)
-		fmt.Printf("    others %s\n", otherHTTP)
-		fmt.Printf("    Throughput %s\n", Throughput)
+		fmt.Printf("\n  Reqs/sec %s", requests)
+		fmt.Printf("\n    latency 95% %s", latency95)
+		fmt.Printf("\n    latency 99% %s", latency99)
+		fmt.Printf("\n    HTTP 2xx %s", HTTP2xx)
+		fmt.Printf("\n    others %s", otherHTTP)
+		fmt.Printf("\n    Throughput %s", Throughput)
 		fmt.Println("\n")
 
 		// Добавляем результаты в массив
