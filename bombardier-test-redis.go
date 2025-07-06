@@ -18,6 +18,7 @@ type BombardierParams struct {
 	Connections string
 	Timeout    string
 	Duration   string
+        Protocol   string
 }
 
 func main() {
@@ -27,7 +28,8 @@ func main() {
                 HOST:         "192.168.22.92",
 		Connections: "1000",
 		Timeout:    "30s",
-		Duration:   "600s",
+		Duration:   "60s",
+                Protocol:   "--http1",
 	}
 
 	var results [][]string
@@ -42,7 +44,7 @@ func main() {
 		// Создаем команду с параметрами
 		cmd := exec.Command(
 			"bombardier",
-                        "--http1",
+//                        params.Protocol,
 			"-c", params.Connections,
 			"-t", params.Timeout,
 			"-d", params.Duration,
@@ -74,7 +76,7 @@ func main() {
 		// Извлечение Reqs/sec
 		reqsPerSecMatch := regexReqsPerSec.FindStringSubmatch(output)
 		if len(reqsPerSecMatch) > 1 {
-			requests = reqsPerSecMatch[1]
+                        requests = strings.ReplaceAll(reqsPerSecMatch[1], ".", ",")
 		} else {
 			requests = "0"
 		}
