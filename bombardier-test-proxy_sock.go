@@ -24,7 +24,7 @@ type BombardierParams struct {
 func main() {
 	// Инициализируем параметры
 	params := BombardierParams{
-		URL:        "redis.php",
+		URL:        "proxy_sock.php",
                 HOST:         "192.168.22.92",
 		Connections: "1000",
 		Timeout:    "30s",
