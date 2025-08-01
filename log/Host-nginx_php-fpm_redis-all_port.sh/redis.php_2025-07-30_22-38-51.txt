@@ -1,0 +1,11 @@
+Count|URL|Connections|Duration|Timeout|Requests/s|Latency95%|unit|Latency99%|unit|HTTP2xx|OthersHTTP|Throughput|unit
+1|redis.php|1000|60s|30s|1062,92|0,99|s|1,07|s|64552|0|1,55|MB
+2|redis.php|1000|60s|30s|1014,51|1,16|s|1,79|s|61662|0|1,48|MB
+3|redis.php|1000|60s|30s|1048,37|1,08|s|1,17|s|63749|0|1,53|MB
+4|redis.php|1000|60s|30s|1029,77|1,16|s|1,22|s|62556|0|1,50|MB
+5|redis.php|1000|60s|30s|1040,58|1,13|s|1,18|s|63301|0|1,52|MB
+6|redis.php|1000|60s|30s|1013,68|1,15|s|1,94|s|61650|0|1,48|MB
+7|redis.php|1000|60s|30s|995,99|1,14|s|1,19|s|60638|0|1,45|MB
+8|redis.php|1000|60s|30s|997,69|1,17|s|2,27|s|60703|0|1,46|MB
+9|redis.php|1000|60s|30s|1045,86|1,12|s|1,18|s|63513|0|1,52|MB
+10|redis.php|1000|60s|30s|1034,34|1,17|s|1,25|s|62869|0|1,51|MB

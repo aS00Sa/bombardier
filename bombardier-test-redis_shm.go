@@ -29,7 +29,7 @@ func main() {
 		Connections: "1000",
 		Timeout:    "30s",
 		Duration:   "60s",
-                Protocol:   "--http1",
+//                Protocol:   "--http1",
 	}
 
 	var results [][]string

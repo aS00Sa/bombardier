@@ -1,0 +1,11 @@
+Count|URL|Connections|Duration|Timeout|Requests/s|Latency95%|unit|Latency99%|unit|HTTP2xx|OthersHTTP|Throughput|unit
+1|proxy_shm.php|1000|60s|30s|1374,94|765,45|ms|0,95|s|83332|0|111,19|MB
+2|proxy_shm.php|1000|60s|30s|1377,69|766,42|ms|0,91|s|83448|0|111,62|MB
+3|proxy_shm.php|1000|60s|30s|1379,82|761,85|ms|0,88|s|83626|0|111,70|MB
+4|proxy_shm.php|1000|60s|30s|1378,53|761,91|ms|0,89|s|83524|0|111,69|MB
+5|proxy_shm.php|1000|60s|30s|1377,83|760,76|ms|0,94|s|83505|0|110,45|MB
+6|proxy_shm.php|1000|60s|30s|1378,44|773,55|ms|0,90|s|83491|0|111,51|MB
+7|proxy_shm.php|1000|60s|30s|1355,79|771,99|ms|1,71|s|82188|0|109,62|MB
+8|proxy_shm.php|1000|60s|30s|1376,35|789,76|ms|0,95|s|83426|0|111,54|MB
+9|proxy_shm.php|1000|60s|30s|1376,66|776,92|ms|0,97|s|83483|0|108,22|MB
+10|proxy_shm.php|1000|60s|30s|1380,43|768,59|ms|0,92|s|83694|0|111,73|MB

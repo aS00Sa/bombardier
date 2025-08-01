@@ -1,0 +1,11 @@
+Count|URL|Connections|Duration|Timeout|Requests/s|Latency95%|unit|Latency99%|unit|HTTP2xx|OthersHTTP|Throughput|unit
+1|index.html|1000|60s|30s|48877,32|32,39|ms|37,18|ms|2925961|0|42,96|MB
+2|index.html|1000|60s|30s|48846,48|33,04|ms|36,96|ms|2926388|0|42,96|MB
+3|index.html|1000|60s|30s|48419,09|38,30|ms|45,37|ms|2901821|0|42,59|MB
+4|index.html|1000|60s|30s|48447,73|41,63|ms|47,08|ms|2901224|0|42,59|MB
+5|index.html|1000|60s|30s|48581,46|31,18|ms|35,91|ms|2911199|0|42,74|MB
+6|index.html|1000|60s|30s|48597,70|37,23|ms|41,95|ms|2908551|0|42,70|MB
+7|index.html|1000|60s|30s|48308,79|33,08|ms|38,17|ms|2896445|0|42,52|MB
+8|index.html|1000|60s|30s|48457,05|44,93|ms|47,07|ms|2902137|0|42,60|MB
+9|index.html|1000|60s|30s|48629,35|32,33|ms|36,76|ms|2914454|0|42,79|MB
+10|index.html|1000|60s|30s|48321,46|44,76|ms|48,21|ms|2893882|0|42,49|MB

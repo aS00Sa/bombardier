@@ -1,0 +1,11 @@
+Count|URL|Connections|Duration|Timeout|Requests/s|Latency95%|unit|Latency99%|unit|HTTP2xx|OthersHTTP|Throughput|unit
+1|proxy_sock.php|1000|60s|30s|1583,45|802,89|ms|0,89|s|95783|0|110,49|MB
+2|proxy_sock.php|1000|60s|30s|1588,82|810,68|ms|0,91|s|96149|0|111,70|MB
+3|proxy_sock.php|1000|60s|30s|1585,06|794,01|ms|0,89|s|95908|0|111,44|MB
+4|proxy_sock.php|1000|60s|30s|1585,46|802,62|ms|0,88|s|95932|0|111,31|MB
+5|proxy_sock.php|1000|60s|30s|1563,85|804,86|ms|1,04|s|94658|0|107,40|MB
+6|proxy_sock.php|1000|60s|30s|1587,89|798,17|ms|0,85|s|96107|0|111,56|MB
+7|proxy_sock.php|1000|60s|30s|1587,59|809,05|ms|0,89|s|96049|0|111,69|MB
+8|proxy_sock.php|1000|60s|30s|1586,00|804,60|ms|0,87|s|95982|0|111,45|MB
+9|proxy_sock.php|1000|60s|30s|1585,09|799,33|ms|0,89|s|95884|0|111,41|MB
+10|proxy_sock.php|1000|60s|30s|1588,66|801,29|ms|0,85|s|96157|0|111,54|MB

@@ -1,0 +1,11 @@
+Count|URL|Connections|Duration|Timeout|Requests/s|Latency95%|unit|Latency99%|unit|HTTP2xx|OthersHTTP|Throughput|unit
+1|proxy.php|1000|60s|30s|1582,38|800,56|ms|0,90|s|95708|0|111,03|MB
+2|proxy.php|1000|60s|30s|1532,23|822,15|ms|1,75|s|92764|0|107,40|MB
+3|proxy.php|1000|60s|30s|1586,91|799,29|ms|0,86|s|96031|0|111,47|MB
+4|proxy.php|1000|60s|30s|1587,52|791,75|ms|0,85|s|96174|0|111,57|MB
+5|proxy.php|1000|60s|30s|1586,09|801,78|ms|0,89|s|95896|0|111,40|MB
+6|proxy.php|1000|60s|30s|1523,83|809,65|ms|2,14|s|92245|0|107,08|MB
+7|proxy.php|1000|60s|30s|1585,87|800,11|ms|0,87|s|95902|0|111,34|MB
+8|proxy.php|1000|60s|30s|1569,87|802,45|ms|0,99|s|94980|0|110,31|MB
+9|proxy.php|1000|60s|30s|1586,54|796,86|ms|0,90|s|96007|0|111,35|MB
+10|proxy.php|1000|60s|30s|1586,20|801,76|ms|849,10|ms|95970|0|111,42|MB
