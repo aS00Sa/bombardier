@@ -26,7 +26,7 @@ func main() {
 	params := BombardierParams{
 		URL:        "redis_sock.php",
                 HOST:         "192.168.22.92",
-		Connections: "1000",
+		Connections: "5000",
 		Timeout:    "30s",
 		Duration:   "60s",
 //                Protocol:   "--http1",
